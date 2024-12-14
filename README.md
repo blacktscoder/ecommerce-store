@@ -1,4 +1,4 @@
-# E-Commerce Web Application with Serverless Architecture
+### E-Commerce Web Application with Serverless Architecture
 
 This is an e-commerce web application built using a **serverless architecture** with AWS services. It allows users to browse products, add them to their cart, and complete purchases. The frontend is built with **React** and **TypeScript**, while the backend is powered by **AWS Lambda**, **DynamoDB**, and **API Gateway**.
 
@@ -107,10 +107,14 @@ Visit `http://localhost:3000` to view the app in development mode.
 ## Backend Development
 
 ### Key Functions:
+
 1. **getProducts**: Fetches a list of products from DynamoDB.
 2. **getProduct**: Fetches a single product’s details from DynamoDB.
 3. **addToCart**: Adds a product to the user's shopping cart.
 4. **checkout**: Processes the checkout request, typically integrates with a payment service.
+5. **createProduct**: Allows the admin to add a new product to the store.
+6. **updateProduct**: Allows the admin to update the details of an existing product.
+7. **deleteProduct**: Allows the admin to delete a product from the store.
 
 #### Lambda Functions:
 All backend logic is implemented in **AWS Lambda** functions, which are triggered via **API Gateway**.
@@ -194,3 +198,9 @@ jobs:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
+
+### Key Updates:
+1. **New Functions**: The backend now includes `createProduct`, `updateProduct`, and `deleteProduct` functions to allow admin users to manage products.
+2. **CI/CD Pipeline**: The section on setting up CI/CD with GitHub Actions has been included with detailed instructions.
+3. **Deployment**: The README includes clearer instructions for both frontend and backend deployment using AWS services.

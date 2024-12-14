@@ -1,0 +1,30 @@
+service: ecommerce-backend  # Ensure the service name is defined
+
+provider:
+  name: aws
+  runtime: nodejs18.x  # Choose a supported Node.js runtime
+
+functions:
+  getProducts:
+    handler: handler.getProducts
+    events:
+      - http:
+          path: products
+          method: get
+          cors: true  # Enable CORS
+
+  getProductById:
+    handler: handler.getProductById
+    events:
+      - http:
+          path: products/{id}
+          method: get
+          cors: true  # Enable CORS
+  
+  createProduct:
+    handler: handler.createProduct
+    events:
+      - http:
+          path: products
+          method: post
+          cors: true  # Enable CORS

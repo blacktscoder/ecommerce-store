@@ -1,42 +1,60 @@
-// pages/HomePage.tsx
-import React from 'react';
-import ProductCard from '../components/ProductCard';
+import React, { useEffect, useState } from 'react';
 
-type HomePageProps = {
-  addToCart: (product: any) => void;
-};
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+}
+
+interface HomePageProps {
+  addToCart: (product: Product) => void; // Define the addToCart prop here
+}
 
 const HomePage: React.FC<HomePageProps> = ({ addToCart }) => {
-  const products = [
-    { id: 1, name: 'Product 1', price: 100, image: '/images/product1.jpg' },
-    { id: 2, name: 'Product 2', price: 200, image: '/images/product2.jpg' },
-    { id: 3, name: 'Product 3', price: 300, image: '/images/product3.jpg' },
-  ];
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https://s1ke6bwshb.execute-api.us-east-1.amazonaws.com/dev/products');
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        setProducts(data);
+      } catch (err) {
+        setError('Failed to load products');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
-    <div style={{
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around', // Distribute items with space between them
-      gap: '20px', // Add some space between items
-      padding: '20px'
-    }}>
-      {products.map((product) => (
-        <div
-          key={product.id}
-          style={{
-            width: '50px', 
-            textAlign: 'center',
-            border: '1px solid #ddd',
-            padding: '10px',
-            borderRadius: '8px',
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-            boxSizing: 'border-box', // Include padding/border in width
-          }}
-        >
-          <ProductCard product={product} addToCart={addToCart} />
-        </div>
-      ))}
+    <div>
+      <h1>Our Products</h1>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {products.map((product) => (
+          <div key={product.id} style={{ margin: '10px' }}>
+            <img
+              src={product.image}
+              alt={product.name}
+              style={{ width: '500px', height: '500px', objectFit: 'cover' }}
+            />
+            <div>{product.name}</div>
+            <div>${product.price}</div>
+            <button onClick={() => addToCart(product)}>Add to Cart</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
