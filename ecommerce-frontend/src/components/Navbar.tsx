@@ -1,17 +1,12 @@
+// components/Navbar.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/cart">Cart</Link>
-        </li>
-      </ul>
+    <nav style={{ padding: '10px', backgroundColor: '#333', color: '#fff' }}>
+      <Link to="/" style={{ color: '#fff', marginRight: '15px' }}>Home</Link>
+      <Link to="/cart" style={{ color: '#fff' }}>Cart</Link>
     </nav>
   );
 };
