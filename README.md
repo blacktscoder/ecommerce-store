@@ -145,6 +145,12 @@ This will automatically set up the necessary infrastructure on AWS, including:
 
 ---
 
+
+### Key Updates:
+1. **New Functions**: The backend now includes `createProduct`, `updateProduct`, and `deleteProduct` functions to allow admin users to manage products.
+2. **CI/CD Pipeline**: The section on setting up CI/CD with GitHub Actions has been included with detailed instructions.
+3. **Deployment**: The README includes clearer instructions for both frontend and backend deployment using AWS services.
+
 ## CI/CD Pipeline
 
 ### Setting Up CI/CD with GitHub Actions
@@ -199,8 +205,3 @@ jobs:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 ```
-
-### Key Updates:
-1. **New Functions**: The backend now includes `createProduct`, `updateProduct`, and `deleteProduct` functions to allow admin users to manage products.
-2. **CI/CD Pipeline**: The section on setting up CI/CD with GitHub Actions has been included with detailed instructions.
-3. **Deployment**: The README includes clearer instructions for both frontend and backend deployment using AWS services.
